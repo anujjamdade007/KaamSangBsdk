@@ -323,7 +323,7 @@ MIT License - See LICENSE file for details
 
 ## 👨‍💻 Author
 
-Your Name - [GitHub](https://github.com/yourusername)
+Your Name - [GitHub](https://github.com/anujjamdade007)
 
 ---
 
@@ -359,34 +359,4 @@ Your Name - [GitHub](https://github.com/yourusername)
 
 **Made with ❤️ & 😂 for the ultimate BSDK squad**
 
-````
-
----
-
-## ✅ **All Files Updated Summary**
-
-| File | Status | Changes |
-|------|--------|---------|
-| `index.html` | ✅ Updated | Full BSDK branding, dark theme, hero section |
-| `timetable.html` | ✅ Updated | BSDK themed, dark colors, fun elements |
-| `calendar.html` | ✅ Updated | BSDK theme, dark calendar, modal |
-| `statistics.html` | ✅ Updated | BSDK stats, dark theme, fun elements |
-| `css/style.css` | ✅ Updated | Complete dark theme, BSDK styles |
-| `js/app.js` | ✅ Updated | BSDK greetings, fun messages |
-| `README.md` | ✅ Updated | Full documentation with BSDK flavor |
-
----
-
-## 🚀 **Deploy Now!**
-
-Your **KaamSangBsdk** project is complete and ready to deploy!
-
-```bash
-# Push to GitHub
-git add .
-git commit -m "🔥 KaamSangBsdk - Complete Project with Dark Theme"
-git push origin main
-
-# Enable GitHub Pages
-# Settings → Pages → main branch → Save
 ````
