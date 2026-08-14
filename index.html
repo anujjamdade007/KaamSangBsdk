@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔥 KaamSangBsdk - Duty Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* KaamSangBsdk Custom Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Righteous&display=swap');
+        
+        .brand-font {
+            font-family: 'Black Ops One', cursive;
+            letter-spacing: 2px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255, 59, 48, 0.5), 0 0 40px rgba(255, 59, 48, 0.3);
+        }
+        
+        .bsdk-card {
+            background: linear-gradient(145deg, #1A1A2E, #16213E);
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .bsdk-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 59, 48, 0.5);
+            box-shadow: 0 12px 48px rgba(255, 59, 48, 0.2);
+        }
+        
+        .bsdk-btn {
+            background: linear-gradient(135deg, #FF3B30, #FF6B6B);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .bsdk-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 59, 48, 0.4);
+        }
+        
+        .nav-bsdk {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 59, 48, 0.2);
+        }
+        
+        .task-card-bsdk {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 59, 48, 0.15);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .task-card-bsdk:hover {
+            border-color: rgba(255, 59, 48, 0.4);
+            transform: translateX(5px);
+        }
+        
+        .task-card-bsdk.completed {
+            border-left: 4px solid #00E676;
+            background: rgba(0, 230, 118, 0.1);
+        }
+        
+        .task-card-bsdk.pending {
+            border-left: 4px solid #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .task-card-bsdk.assigned {
+            border-left: 4px solid #FF3B30;
+            background: rgba(255, 59, 48, 0.05);
+        }
+        
+        .bsdk-badge {
+            background: linear-gradient(135deg, #FF3B30, #FF6B6B);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+        }
+        
+        .bsdk-select {
+            background: rgba(26, 26, 46, 0.9);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            color: white;
+            border-radius: 12px;
+            padding: 12px 16px;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .bsdk-select option {
+            background: #1A1A2E;
+            color: white;
+        }
+        
+        .bsdk-select:focus {
+            outline: none;
+            border-color: #FF3B30;
+            box-shadow: 0 0 20px rgba(255, 59, 48, 0.2);
+        }
+        
+        .bottom-nav-bsdk {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 59, 48, 0.2);
+        }
+        
+        .nav-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-icon:hover {
+            color: #FF3B30;
+            transform: translateY(-3px);
+        }
+        
+        .nav-icon.active {
+            color: #FF3B30;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #FF3B30;
+        }
+        
+        .nav-link.active-nav {
+            color: #FF3B30;
+        }
+        
+        .nav-link.active-nav::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: #FF3B30;
+            border-radius: 2px;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0F0F1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #FF3B30;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF6B6B;
+        }
+    </style>
+</head>
+<body class="bg-[#0F0F1A] text-white">
+    
+    <!-- Navigation -->
+    <nav class="nav-bsdk sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl">🔥</span>
+                    <div>
+                        <span class="brand-font text-2xl text-red-500 glow-text">KaamSang</span>
+                        <span class="brand-font text-2xl text-white">Bsdk</span>
+                        <span class="bsdk-badge ml-2">v1.0</span>
+                    </div>
+                </div>
+                <div class="flex space-x-1 overflow-x-auto">
+                    <a href="index.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative active-nav" data-page="home">
+                        📋 Home
+                    </a>
+                    <a href="timetable.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="timetable">
+                        📅 Timetable
+                    </a>
+                    <a href="calendar.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="calendar">
+                        📆 Calendar
+                    </a>
+                    <a href="statistics.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="statistics">
+                        📊 Stats
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6 pb-24">
+        
+        <!-- Hero Section -->
+        <div class="text-center mb-8">
+            <div class="inline-block bsdk-card rounded-xl p-4 mb-4">
+                <span class="text-4xl">🔥</span>
+                <span class="text-3xl brand-font text-red-500">BSDK</span>
+                <span class="text-2xl text-white">Sang</span>
+                <span class="text-3xl brand-font text-yellow-400">Kaam</span>
+                <span class="text-sm text-gray-400 block mt-1">"BSDK sang, kaam sang!"</span>
+            </div>
+            
+            <div class="text-sm text-gray-400">Today</div>
+            <div class="text-2xl font-bold text-white glow-text" id="todayDate">Loading...</div>
+            <div class="text-xs text-gray-500 mt-1">🗓️ 17 Aug 2026 - 17 Aug 2027</div>
+        </div>
+
+        <!-- Person Selector -->
+        <div class="bsdk-card rounded-xl p-5 mb-6">
+            <label class="block text-sm font-medium text-gray-400 mb-2">
+                👤 Who's the BSDK today?
+            </label>
+            <select id="personSelect" class="bsdk-select">
+                <option value="">Select your name</option>
+            </select>
+            <div class="text-xs text-gray-500 mt-2 italic">
+                "Select your name and see your BSDK duties!"
+            </div>
+        </div>
+
+        <!-- Personal Dashboard -->
+        <div id="personalDashboard" class="hidden">
+            <!-- Greeting Card -->
+            <div class="bsdk-card rounded-xl p-6 mb-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 text-8xl opacity-10">🔥</div>
+                <h2 class="text-2xl font-bold text-white" id="greeting">Hello, BSDK! 👋</h2>
+                <p class="text-gray-400 mt-1">Here are your duties for today</p>
+                <div class="flex items-center mt-3 space-x-2">
+                    <span class="bsdk-badge">🔥 Active</span>
+                    <span class="text-xs text-gray-500">| Don't be a lazy BSDK!</span>
+                </div>
+            </div>
+
+            <!-- Tasks List -->
+            <div id="tasksContainer" class="space-y-4">
+                <!-- Tasks will be rendered here -->
+            </div>
+
+            <!-- Next Duty -->
+            <div class="mt-8 bsdk-card rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                    📌 Next Duty
+                    <span class="bsdk-badge ml-2">Upcoming</span>
+                </h3>
+                <div id="nextDutyContainer">
+                    <p class="text-gray-500 text-sm">Select your name to see your next BSDK duty</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flat Schedule -->
+        <div class="mt-8">
+            <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                👥 Today's BSDK Schedule
+                <span class="bsdk-badge ml-2">Live</span>
+            </h3>
+            <div id="flatSchedule" class="bsdk-card rounded-xl p-5">
+                <p class="text-gray-500 text-sm">Loading schedule...</p>
+            </div>
+        </div>
+
+        <!-- Fun Footer Quote -->
+        <div class="mt-8 text-center text-xs text-gray-600 border-t border-gray-800 pt-4">
+            <p class="italic">"BSDK sang, kaam sang! No one gets left behind!" 🔥</p>
+            <p class="mt-1">Made with ❤️ for the ultimate BSDK squad</p>
+        </div>
+    </main>
+
+    <!-- Footer Navigation (Mobile) -->
+    <nav class="bottom-nav-bsdk fixed bottom-0 left-0 right-0 md:hidden">
+        <div class="flex justify-around items-center h-16">
+            <a href="index.html" class="nav-icon flex flex-col items-center text-red-500">
+                <span class="text-2xl">🏠</span>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="timetable.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">📅</span>
+                <span class="text-xs">Timetable</span>
+            </a>
+            <a href="calendar.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">📆</span>
+                <span class="text-xs">Calendar</span>
+            </a>
+            <a href="statistics.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">📊</span>
+                <span class="text-xs">Stats</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="js/supabase.js"></script>
+    <script src="js/scheduler.js"></script>
+    <script src="js/conflictResolver.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script>
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active-nav'));
+                this.classList.add('active-nav');
+            });
+        });
+    </script>
+</body>
+</html>

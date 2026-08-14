@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔥 KaamSangBsdk - Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .brand-font {
+            font-family: 'Black Ops One', cursive;
+            letter-spacing: 2px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255, 59, 48, 0.5), 0 0 40px rgba(255, 59, 48, 0.3);
+        }
+        
+        .nav-bsdk {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 59, 48, 0.2);
+        }
+        
+        .bsdk-card {
+            background: linear-gradient(145deg, #1A1A2E, #16213E);
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .bsdk-badge {
+            background: linear-gradient(135deg, #FF3B30, #FF6B6B);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #FF3B30;
+        }
+        
+        .nav-link.active-nav {
+            color: #FF3B30;
+        }
+        
+        .nav-link.active-nav::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: #FF3B30;
+            border-radius: 2px;
+        }
+        
+        .bottom-nav-bsdk {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 59, 48, 0.2);
+        }
+        
+        .nav-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-icon:hover {
+            color: #FF3B30;
+            transform: translateY(-3px);
+        }
+        
+        .nav-icon.active {
+            color: #FF3B30;
+        }
+        
+        .calendar-day {
+            min-height: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: rgba(26, 26, 46, 0.3);
+        }
+        
+        .calendar-day:hover {
+            background: rgba(255, 59, 48, 0.1);
+            border-color: rgba(255, 59, 48, 0.3);
+        }
+        
+        .calendar-day.today {
+            background: rgba(255, 59, 48, 0.15);
+            border-color: #FF3B30;
+        }
+        
+        .calendar-day.other-month {
+            opacity: 0.3;
+        }
+        
+        .task-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin: 1px;
+        }
+        
+        .task-dot.water { background-color: #3b82f6; }
+        .task-dot.bathroom { background-color: #8b5cf6; }
+        .task-dot.garbage { background-color: #f59e0b; }
+        
+        .bsdk-btn {
+            background: linear-gradient(135deg, #FF3B30, #FF6B6B);
+            border: none;
+            transition: all 0.3s ease;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .bsdk-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 59, 48, 0.4);
+        }
+        
+        @media (max-width: 640px) {
+            .calendar-day {
+                min-height: 60px;
+                font-size: 0.75rem;
+                padding: 2px;
+            }
+            .task-dot {
+                width: 6px;
+                height: 6px;
+            }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0F0F1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #FF3B30;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-[#0F0F1A] text-white">
+    
+    <!-- Navigation -->
+    <nav class="nav-bsdk sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl">🔥</span>
+                    <div>
+                        <span class="brand-font text-2xl text-red-500 glow-text">KaamSang</span>
+                        <span class="brand-font text-2xl text-white">Bsdk</span>
+                        <span class="bsdk-badge ml-2">v1.0</span>
+                    </div>
+                </div>
+                <div class="flex space-x-1 overflow-x-auto">
+                    <a href="index.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="home">
+                        📋 Home
+                    </a>
+                    <a href="timetable.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="timetable">
+                        📅 Timetable
+                    </a>
+                    <a href="calendar.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative active-nav" data-page="calendar">
+                        📆 Calendar
+                    </a>
+                    <a href="statistics.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="statistics">
+                        📊 Stats
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6 pb-24">
+        <!-- Calendar Navigation -->
+        <div class="flex justify-between items-center mb-6">
+            <button id="prevMonthBtn" class="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg text-white transition">
+                ←
+            </button>
+            <h2 id="calendarTitle" class="text-xl font-bold text-white glow-text">August 2026</h2>
+            <button id="nextMonthBtn" class="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg text-white transition">
+                →
+            </button>
+        </div>
+
+        <!-- Calendar Grid -->
+        <div class="bsdk-card rounded-xl overflow-hidden p-0">
+            <div class="grid grid-cols-7 gap-0 bg-red-500/5 border-b border-red-500/10">
+                <div class="p-3 text-center font-semibold text-gray-400 text-sm">Sun</div>
+                <div class="p-3 text-center font-semibold text-gray-400 text-sm">Mon</div>
+                <div class="p-3 text-center font-semibold text-gray-400 text-sm">Tue</div>
+                <div class="p-3 text-center font-semibold text-gray-400 text-sm">Wed</div>
+                <div class="p-3 text-center font-semibold text-gray-400 text-sm">Thu</div>
+                <div class="p-3 text-center font-semibold text-gray-400 text-sm">Fri</div>
+                <div class="p-3 text-center font-semibold text-gray-400 text-sm">Sat</div>
+            </div>
+            <div id="calendarGrid" class="grid grid-cols-7 gap-0">
+                <!-- Calendar days will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Day Detail Modal -->
+        <div id="dayDetailModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bsdk-card rounded-xl shadow-2xl max-w-md w-full max-h-[80vh] overflow-y-auto p-0">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 id="modalDate" class="text-xl font-bold text-white">Date</h3>
+                        <button id="closeModalBtn" class="text-gray-400 hover:text-red-500 text-3xl transition">&times;</button>
+                    </div>
+                    <div id="modalContent">
+                        <!-- Day details will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Footer -->
+        <div class="mt-8 text-center text-xs text-gray-600 border-t border-gray-800 pt-4">
+            <p class="italic">"Calendar dekh aur plan kar! BSDK sang, kaam sang!" 📆🔥</p>
+        </div>
+    </main>
+
+    <!-- Footer Navigation (Mobile) -->
+    <nav class="bottom-nav-bsdk fixed bottom-0 left-0 right-0 md:hidden">
+        <div class="flex justify-around items-center h-16">
+            <a href="index.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">🏠</span>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="timetable.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">📅</span>
+                <span class="text-xs">Timetable</span>
+            </a>
+            <a href="calendar.html" class="nav-icon flex flex-col items-center text-red-500">
+                <span class="text-2xl">📆</span>
+                <span class="text-xs">Calendar</span>
+            </a>
+            <a href="statistics.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">📊</span>
+                <span class="text-xs">Stats</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/scheduler.js"></script>
+    <script src="js/conflictResolver.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+</html>

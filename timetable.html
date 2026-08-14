@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔥 KaamSangBsdk - Timetable</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .brand-font {
+            font-family: 'Black Ops One', cursive;
+            letter-spacing: 2px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255, 59, 48, 0.5), 0 0 40px rgba(255, 59, 48, 0.3);
+        }
+        
+        .nav-bsdk {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 59, 48, 0.2);
+        }
+        
+        .bsdk-card {
+            background: linear-gradient(145deg, #1A1A2E, #16213E);
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .bsdk-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 59, 48, 0.5);
+            box-shadow: 0 12px 48px rgba(255, 59, 48, 0.2);
+        }
+        
+        .bsdk-badge {
+            background: linear-gradient(135deg, #FF3B30, #FF6B6B);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #FF3B30;
+        }
+        
+        .nav-link.active-nav {
+            color: #FF3B30;
+        }
+        
+        .nav-link.active-nav::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: #FF3B30;
+            border-radius: 2px;
+        }
+        
+        .bottom-nav-bsdk {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 59, 48, 0.2);
+        }
+        
+        .nav-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-icon:hover {
+            color: #FF3B30;
+            transform: translateY(-3px);
+        }
+        
+        .nav-icon.active {
+            color: #FF3B30;
+        }
+        
+        .timetable-row:hover {
+            background: rgba(255, 59, 48, 0.05);
+        }
+        
+        .bsdk-select {
+            background: rgba(26, 26, 46, 0.9);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            color: white;
+            border-radius: 12px;
+            padding: 10px 14px;
+            width: 100%;
+            font-size: 0.95rem;
+        }
+        
+        .bsdk-select option {
+            background: #1A1A2E;
+            color: white;
+        }
+        
+        .bsdk-select:focus {
+            outline: none;
+            border-color: #FF3B30;
+            box-shadow: 0 0 20px rgba(255, 59, 48, 0.2);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0F0F1A;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #FF3B30;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF6B6B;
+        }
+    </style>
+</head>
+<body class="bg-[#0F0F1A] text-white">
+    
+    <!-- Navigation -->
+    <nav class="nav-bsdk sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl">🔥</span>
+                    <div>
+                        <span class="brand-font text-2xl text-red-500 glow-text">KaamSang</span>
+                        <span class="brand-font text-2xl text-white">Bsdk</span>
+                        <span class="bsdk-badge ml-2">v1.0</span>
+                    </div>
+                </div>
+                <div class="flex space-x-1 overflow-x-auto">
+                    <a href="index.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="home">
+                        📋 Home
+                    </a>
+                    <a href="timetable.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative active-nav" data-page="timetable">
+                        📅 Timetable
+                    </a>
+                    <a href="calendar.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="calendar">
+                        📆 Calendar
+                    </a>
+                    <a href="statistics.html" class="nav-link text-sm whitespace-nowrap text-gray-300 hover:text-red-500 transition px-3 py-2 rounded-lg relative" data-page="statistics">
+                        📊 Stats
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-6 pb-24">
+        <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-white flex items-center">
+                    📅 Full Timetable
+                    <span class="bsdk-badge ml-3">BSDK Schedule</span>
+                </h1>
+                <p class="text-sm text-gray-400 mt-1">"Know when your BSDK duty is!"</p>
+            </div>
+            <div class="flex space-x-2">
+                <button id="prevWeekBtn" class="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg text-white transition">
+                    ←
+                </button>
+                <span id="weekLabel" class="px-4 py-2 font-medium text-white bg-red-500/10 border border-red-500/20 rounded-lg">Week 1</span>
+                <button id="nextWeekBtn" class="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg text-white transition">
+                    →
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="bsdk-card rounded-xl p-5 mb-6">
+            <div class="flex flex-wrap gap-4">
+                <div class="flex-1 min-w-[150px]">
+                    <label class="block text-sm font-medium text-gray-400 mb-1">👤 Filter by Person</label>
+                    <select id="filterPerson" class="bsdk-select">
+                        <option value="all">All Residents</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[150px]">
+                    <label class="block text-sm font-medium text-gray-400 mb-1">🎯 Filter by Task</label>
+                    <select id="filterTask" class="bsdk-select">
+                        <option value="all">All Tasks</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timetable Table -->
+        <div class="bsdk-card rounded-xl overflow-hidden p-0">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-red-500/10 border-b border-red-500/20">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-300">Date</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-300">Day</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-300">🚰 Water</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-300">🧹 Bathroom</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-300">🗑️ Garbage</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timetableBody">
+                        <!-- Rows will be rendered here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center mt-6">
+            <button id="loadMoreBtn" class="bsdk-btn px-6 py-2 rounded-lg font-medium">
+                Load More 🚀
+            </button>
+        </div>
+
+        <!-- Fun Footer -->
+        <div class="mt-8 text-center text-xs text-gray-600 border-t border-gray-800 pt-4">
+            <p class="italic">"Timetable dekh aur kaam kar! BSDK sang, kaam sang!" 🔥</p>
+        </div>
+    </main>
+
+    <!-- Footer Navigation (Mobile) -->
+    <nav class="bottom-nav-bsdk fixed bottom-0 left-0 right-0 md:hidden">
+        <div class="flex justify-around items-center h-16">
+            <a href="index.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">🏠</span>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="timetable.html" class="nav-icon flex flex-col items-center text-red-500">
+                <span class="text-2xl">📅</span>
+                <span class="text-xs">Timetable</span>
+            </a>
+            <a href="calendar.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">📆</span>
+                <span class="text-xs">Calendar</span>
+            </a>
+            <a href="statistics.html" class="nav-icon flex flex-col items-center text-gray-400">
+                <span class="text-2xl">📊</span>
+                <span class="text-xs">Stats</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/scheduler.js"></script>
+    <script src="js/conflictResolver.js"></script>
+    <script src="js/timetable.js"></script>
+</body>
+</html>
